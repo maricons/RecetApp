@@ -10,25 +10,18 @@
     <ion-button expand="block" (click)="openNewRecipeModal()">Nueva receta</ion-button>
   </div>
 
-  <!-- Botones para selección y eliminación, ajustados al mismo ancho -->
-  <ion-grid>
-    <ion-row>
-      <!-- Botón para activar/desactivar el modo selección -->
-      <ion-col size="6">
-        <ion-button expand="block" (click)="toggleSeleccionar()">
-          {{ seleccionando ? 'Cancelar selección' : 'Seleccionar recetas' }}
-        </ion-button>
-      </ion-col>
-      
-      <!-- Botón para eliminar recetas seleccionadas, solo visible en modo selección -->
-      <ion-col size="6" *ngIf="seleccionando">
-        <ion-button expand="block" (click)="eliminarRecetasSeleccionadas()" 
-          [disabled]="!hayRecetasSeleccionadas()">
-          Eliminar seleccionadas
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="new-recipes-title">
+    <ion-button expand="block" (click)="toggleSeleccionar()">
+      {{ seleccionando ? 'Cancelar selección' : 'Seleccionar recetas' }}
+    </ion-button>
+  </div>
+
+  <div class="new-recipes-title" *ngIf="seleccionando">
+    <ion-button expand="block" (click)="eliminarRecetasSeleccionadas()" 
+        [disabled]="!hayRecetasSeleccionadas()">
+        Eliminar seleccionadas
+    </ion-button>
+  </div>
 
   <!-- Grid Layout for Cards -->
   <ion-grid>
