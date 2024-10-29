@@ -3,7 +3,12 @@ import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { Auth, signOut, onAuthStateChanged, User } from '@angular/fire/auth';
 import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+<<<<<<< Updated upstream:src/app/profile/profile.page.ts
 
+=======
+import { AuthService } from '../../services/auth.service'; // Asegúrate de que estás importando AuthService correctamente
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+>>>>>>> Stashed changes:src/app/pages/profile/profile.page.ts
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +22,7 @@ export class ProfilePage implements OnInit {
   selectedFile: File | null = null;
 
   currentUser: User | null = null;
+  selectedImage: string | null | undefined = null;
 
   constructor(private firestore: Firestore, private storage: Storage, private auth: Auth, private router: Router) { }
 
@@ -37,6 +43,20 @@ export class ProfilePage implements OnInit {
 
   isAuthenticated(): boolean {
     return this.currentUser !== null;
+  }
+
+  async selectImage() {
+
+    console.log("seleccionando foto...");
+
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Prompt // Esto muestra opciones para cámara o galería
+    });
+
+    this.selectedImage = image.dataUrl;
   }
 
   async loadUserProfile() {

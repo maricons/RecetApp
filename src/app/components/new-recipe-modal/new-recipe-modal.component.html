@@ -30,9 +30,22 @@
       <ion-textarea [(ngModel)]="recipe.minutos"></ion-textarea>
     </ion-item>
     <ion-item>
+<<<<<<< Updated upstream
       <ion-label position="stacked">Imágen</ion-label>
       <input type="file" (change)="onFileSelected($event)" />
     </ion-item>
+=======
+      <ion-label position="stacked">Imagen</ion-label>
+      <ion-button expand="block" (click)="selectImage()">Seleccionar imagen</ion-button>
+    </ion-item>
+
+    <!--<ion-item>
+      <ion-label position="stacked">Imagen</ion-label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-item>-->
+
+    <ion-img *ngIf="selectedImage" [src]="selectedImage"></ion-img>
+>>>>>>> Stashed changes
   </ion-list>
   <ion-button expand="block" (click)="saveRecipe()">Publicar Receta</ion-button>
 </ion-content>

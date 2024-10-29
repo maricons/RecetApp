@@ -17,11 +17,33 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { NewRecipeModalComponent } from './components/new-recipe-modal/new-recipe-modal.component'; // Importa tu componente
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { RecipeDetailModalComponent } from './components/recipe-detail-modal/recipe-detail-modal.component';
+<<<<<<< Updated upstream
 import { provideStorage, getStorage } from '@angular/fire/storage';  // Cambiado
 
 @NgModule({
   declarations: [AppComponent, NewRecipeModalComponent, RecipeDetailModalComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+=======
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { provideHttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { CategoriaService } from './services/category.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+//not obsoleto
+
+
+@NgModule({
+  declarations: [AppComponent, NewRecipeModalComponent, RecipeDetailModalComponent, NotFoundComponent],
+  imports: [
+    BrowserModule,
+    //provideHttpClient()
+    //HttpHeaders,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+>>>>>>> Stashed changes
     AngularFireModule.initializeApp(environment.firebaseConfig),
     FormsModule,],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideFirebaseApp(() => initializeApp({ "projectId": "ionic-movil-grupo9", "appId": "1:39435686784:web:92314e82706aec62f62765", "storageBucket": "ionic-movil-grupo9.appspot.com", "apiKey": "AIzaSyAURv0OnOrELBad898eWLEKi-sYBcxuYUE", "authDomain": "ionic-movil-grupo9.firebaseapp.com", "messagingSenderId": "39435686784", "measurementId": "G-KWK90N6ZJ0" })), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideStorage(() => getStorage()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging())],
