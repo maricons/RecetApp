@@ -21,11 +21,12 @@ import { Observable, of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CategoriaService } from './services/category.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 //not obsoleto
 
 
 @NgModule({
-  declarations: [AppComponent, NewRecipeModalComponent, RecipeDetailModalComponent],
+  declarations: [AppComponent, NewRecipeModalComponent, RecipeDetailModalComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     //provideHttpClient()
