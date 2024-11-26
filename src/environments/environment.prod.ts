@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   firebaseConfig: {
     apiKey: "AIzaSyAURv0OnOrELBad898eWLEKi-sYBcxuYUE",
     authDomain: "ionic-movil-grupo9.firebaseapp.com",
