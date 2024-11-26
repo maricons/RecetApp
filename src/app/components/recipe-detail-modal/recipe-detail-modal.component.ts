@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild  } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Firestore, collection, doc, setDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { CompartirMailComponent } from '../compartir-mail/compartir-mail.component'
+//import { CompartirMailComponent } from '../compartir-mail/compartir-mail.component'
+import { IonModal } from '@ionic/angular';
+import { MailComposer } from '@capacitor/mail-composer';
 
 @Component({
   selector: 'app-recipe-detail-modal',
@@ -10,6 +12,9 @@ import { CompartirMailComponent } from '../compartir-mail/compartir-mail.compone
   styleUrls: ['./recipe-detail-modal.component.scss'],
 })
 export class RecipeDetailModalComponent {
+
+  @ViewChild('modal') modal: IonModal;
+
   @Input() receta: any;
   authorName: string = 'Cargando...'; // Variable para almacenar el nombre del autor
   isLiked: boolean = false;
@@ -19,7 +24,8 @@ export class RecipeDetailModalComponent {
   constructor(
     private modalController: ModalController,
     private firestore: Firestore,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private emailComposer: EmailComposer
   ) {
 
     this.afAuth.authState.subscribe(user => {
@@ -30,7 +36,24 @@ export class RecipeDetailModalComponent {
       }
     });
 
+    
+
   }
+
+  sendEmail() {
+    let email = {
+      to: 'fe.docmac@duocuc.cl',
+      cc: 'cc@ejemplo.com',
+      bcc: ['bcc1@ejemplo.com', 'bcc2@ejemplo.com'],
+      subject: 'Asunto del correo',
+      body: 'Cuerpo del correo electrónico',
+      isHtml: true
+    };
+
+    // Usamos el método open para enviar el correo
+    this.emailComposer.open(email);
+  }
+
 
   ngOnInit() {
     this.loadAuthorName();
@@ -119,7 +142,30 @@ export class RecipeDetailModalComponent {
     this.likeCount = likeDocs.size;  // Establece el número total de likes
   }
 
-  async openShareModal() {
+  openShareModal() {
+    this.modal.present(); // Abrimos el modal
+  }
+
+  email: string = '';
+
+
+  enviarEmail() {
+    if (this.email) {
+      console.log('Correo electrónico enviado a:', this.email);
+
+      this.modal.dismiss();
+      
+      this.sendEmail();
+
+
+
+    } else {
+      console.log('Por favor ingresa un correo válido.');
+    }
+  }
+
+
+  /*async openShareModal() {
 
     console.log('El icono de compartir fue clickeado.');
 
@@ -128,5 +174,5 @@ export class RecipeDetailModalComponent {
       cssClass: 'custom-modal',
     });
     await modal.present();
-  }
+  }*/
 }

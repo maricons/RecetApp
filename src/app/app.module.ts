@@ -14,7 +14,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { NewRecipeModalComponent } from './components/new-recipe-modal/new-recipe-modal.component';
 import { FormsModule } from '@angular/forms';
 import { RecipeDetailModalComponent } from './components/recipe-detail-modal/recipe-detail-modal.component';
-import { CompartirMailComponent } from './components/compartir-mail/compartir-mail.component'
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
@@ -23,11 +22,12 @@ import { provideHttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CategoriaService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MailComposer } from '@capacitor/mail-composer';
 //not obsoleto
 
 
 @NgModule({
-  declarations: [AppComponent, NewRecipeModalComponent, CompartirMailComponent, RecipeDetailModalComponent, NotFoundComponent],
+  declarations: [AppComponent, NewRecipeModalComponent, RecipeDetailModalComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     //provideHttpClient()
@@ -43,7 +43,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   })),
   provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideStorage(() => getStorage()),
   provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()),
-  provideHttpClient(), CategoriaService],
+  provideHttpClient(), CategoriaService, MailComposer],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
