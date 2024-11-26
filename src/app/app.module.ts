@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { NewRecipeModalComponent } from './components/new-recipe-modal/new-recipe-modal.component';
 import { FormsModule } from '@angular/forms';
 import { RecipeDetailModalComponent } from './components/recipe-detail-modal/recipe-detail-modal.component';
+import { CompartirMailComponent } from './components/compartir-mail/compartir-mail.component'
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
@@ -26,7 +27,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
-  declarations: [AppComponent, NewRecipeModalComponent, RecipeDetailModalComponent, NotFoundComponent],
+  declarations: [AppComponent, NewRecipeModalComponent, CompartirMailComponent, RecipeDetailModalComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     //provideHttpClient()

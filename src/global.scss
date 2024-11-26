@@ -36,3 +36,17 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; 
 @import "@ionic/angular/css/palettes/dark.system.css";*/
 
+
+.custom-modal {
+    --background: transparent;
+    --width: 300px;
+    --height: 200px;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --background: white;
+    --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-modal::part(backdrop) {
+    background: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,10 @@
+<ion-content class="modal-content">
+  <div class="modal-body" style="background-color: aqua;">
+    <h2>Ingrese su correo</h2>
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="sendEmail()">Enviar</ion-button>
+  </div>
+</ion-content>
