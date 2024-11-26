@@ -22,6 +22,7 @@
         class="like-icon"
         (click)="toggleLike()">
       </ion-icon>
+        
       </ion-card-title>
     </ion-card-header>
 
@@ -36,11 +37,19 @@
           </ion-avatar>
           <span>{{ authorName }}</span> <!-- Mostrar el nombre del autor -->
         </div>
-        <div class="recipe-likes">
-          <ion-icon name="heart"></ion-icon>
-          <span>{{ likeCount }} Likes</span>
-        </div>
+        
+
       </div>
+
+      
+
+      <div class="recipe-likes">
+        <ion-icon name="heart"></ion-icon>
+        <span>{{ likeCount }} Likes</span>
+        <span class="share-icon" (click)="openShareModal()"><ion-icon class="social-icon" name="share-social-outline"></ion-icon></span>
+      </div>
+
+      
 
       <hr class="divider">
 

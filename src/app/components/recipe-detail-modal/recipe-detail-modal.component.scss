@@ -42,13 +42,23 @@
 
 .recipe-likes {
     display: flex;
+    /* Usar flexbox para alinear elementos */
     align-items: center;
+    /* Centrar verticalmente */
+    justify-content: space-between;
+    /* Separar elementos */
 }
+
 
 .recipe-likes ion-icon {
     color: #e74c3c;
     margin-right: 4px;
     /* Espacio entre el icono de corazón y el número de likes */
+}
+
+.share-icon {
+    margin-left: auto;
+    /* Empujar el ícono de compartir a la derecha */
 }
 
 h3 {

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Firestore, collection, doc, setDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { CompartirMailComponent } from '../compartir-mail/compartir-mail.component'
 
 @Component({
   selector: 'app-recipe-detail-modal',
@@ -69,8 +70,7 @@ export class RecipeDetailModalComponent {
     const userID = this.currentUser.uid;
     const likeDocRef = doc(this.firestore, `likes/${postID}_${userID}`);
 
-    // Actualizar la interfaz inmediatamente
-    this.isLiked = !this.isLiked;  // Cambia el estado visual del ícono de like
+    this.isLiked = !this.isLiked;
     this.likeCount += this.isLiked ? 1 : -1;
 
     // Actualizar Firebase en segundo plano (de manera asíncrona)
@@ -117,5 +117,16 @@ export class RecipeDetailModalComponent {
 
     const likeDocs = await getDocs(q);
     this.likeCount = likeDocs.size;  // Establece el número total de likes
+  }
+
+  async openShareModal() {
+
+    console.log('El icono de compartir fue clickeado.');
+
+    const modal = await this.modalController.create({
+      component: CompartirMailComponent,
+      cssClass: 'custom-modal',
+    });
+    await modal.present();
   }
 }
