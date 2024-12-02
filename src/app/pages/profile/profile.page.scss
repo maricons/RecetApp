@@ -1,53 +1,106 @@
 ion-button.bt {
 
-    background-color: white;
+  background-color: white;
 }
 
 .main-container {
-  display: flex; /* Usar flexbox */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  display: flex;
+  /* Usar flexbox */
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
 }
 
 .profile-picture-container {
-  position: relative; /* Contenedor relativo */
-  display: flex; /* Flexbox para el contenedor */
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra el contenido verticalmente */
+  position: relative;
+  /* Contenedor relativo */
+  display: flex;
+  /* Flexbox para el contenedor */
+  justify-content: center;
+  /* Centra el contenido horizontalmente */
+  align-items: center;
+  /* Centra el contenido verticalmente */
 }
 
-  .profile-avatar {
-    width: 20vh;  /* Ajusta el ancho según sea necesario */
-    height: 20vh; /* Ajusta la altura según sea necesario */
-  }
+.profile-avatar {
+  width: 20vh;
+  /* Ajusta el ancho según sea necesario */
+  height: 20vh;
+  /* Ajusta la altura según sea necesario */
+}
 
-  .change-photo-icon {
-    position: absolute;
-    top: 75%; /* Ajusta para que esté un poco hacia abajo del centro */
-    left: 75%; /* Ajusta para que esté un poco hacia la derecha del centro */
-    transform: translate(-50%, -50%); /* Centra el ícono */
-    font-size: 20px; /* Tamaño del ícono */
-    color: #ff7f50; /* Color salmón */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-    border-radius: 50%; /* Fondo redondeado */
-    padding: 5px; /* Espaciado alrededor del ícono */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    z-index: 10; /* Asegúrate de que el ícono esté por encima del avatar */
+.change-photo-icon {
+  position: absolute;
+  top: 75%;
+  /* Ajusta para que esté un poco hacia abajo del centro */
+  left: 75%;
+  /* Ajusta para que esté un poco hacia la derecha del centro */
+  transform: translate(-50%, -50%);
+  /* Centra el ícono */
+  font-size: 20px;
+  /* Tamaño del ícono */
+  color: #ff7f50;
+  /* Color salmón */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo semi-transparente */
+  border-radius: 50%;
+  /* Fondo redondeado */
+  padding: 5px;
+  /* Espaciado alrededor del ícono */
+  cursor: pointer;
+  /* Cambia el cursor al pasar por encima */
+  z-index: 10;
+  /* Asegúrate de que el ícono esté por encima del avatar */
 }
 
 .button-container {
-  display: flex; /* Usar flexbox */
-  flex-direction: column; /* Apilar los botones verticalmente */
-  height: 30vh; /* Usar toda la altura de la ventana */
-  justify-content: space-between; /* Espaciar los elementos entre el principio y el final */
+  display: flex;
+  /* Usar flexbox */
+  flex-direction: column;
+  /* Apilar los botones verticalmente */
+  height: 30vh;
+  /* Usar toda la altura de la ventana */
+  justify-content: space-between;
+  /* Espaciar los elementos entre el principio y el final */
 }
 
 .spacer {
-  flex-grow: 1; /* Hacer que este div ocupe el espacio disponible */
+  flex-grow: 1;
+  /* Hacer que este div ocupe el espacio disponible */
 }
 
 .custom-heading {
   font-family: 'Monserrat', sans-serif !important;
-  font-size: 30px; /* Ajusta el tamaño según sea necesario */
-  color: #333; /* Cambia el color si lo deseas */
+  font-size: 30px;
+  /* Ajusta el tamaño según sea necesario */
+  color: #333;
+  /* Cambia el color si lo deseas */
+}
+
+.photo-container {
+  display: flex;
+  justify-content: center;
+  /* Centrar horizontalmente */
+  align-items: center;
+  /* Centrar verticalmente */
+  height: auto;
+  /* Ajusta la altura del contenedor automáticamente */
+  width: 100%;
+  /* Ajusta al ancho completo del contenedor */
+  max-height: 300px;
+  /* Ajusta el tamaño máximo del contenedor */
+  overflow: hidden;
+  /* Oculta el contenido que exceda el tamaño del contenedor */
+  margin-bottom: 20px;
+  /* Espaciado inferior entre la imagen y los botones */
+}
+
+.photo-container img {
+  max-width: 90%;
+  /* Limita el ancho máximo de la imagen al 90% del contenedor */
+  max-height: 100%;
+  /* Evita que la imagen exceda la altura del contenedor */
+  object-fit: contain;
+  /* Ajusta la imagen sin recortarla */
 }

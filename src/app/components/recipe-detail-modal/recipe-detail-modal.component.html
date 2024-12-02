@@ -46,7 +46,9 @@
       <div class="recipe-likes">
         <ion-icon name="heart"></ion-icon>
         <span>{{ likeCount }} Likes</span>
-        <span class="share-icon" (click)="openShareModal()"><ion-icon class="social-icon" name="share-social-outline"></ion-icon></span>
+        <span class="share-icon" (click)="openShareModal()">
+          <ion-icon class="social-icon" name="share-social-outline"></ion-icon>
+        </span>
       </div>
 
       
@@ -72,3 +74,24 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-modal id="example-modal" #modal>
+  <ng-template>
+    <div class="wrapper">
+      <h1>Compartir</h1>
+
+      <!-- Campo de correo electrónico -->
+      <ion-item>
+        <ion-input
+          [(ngModel)]="email"
+          labelPlacement="floating"
+          placeholder="correo@dominio.com">
+          <div slot="label">Email <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+
+      <!-- Botón para enviar -->
+      <ion-button expand="block" (click)="enviarEmail()">Enviar</ion-button>
+    </div>
+  </ng-template>
+</ion-modal>
