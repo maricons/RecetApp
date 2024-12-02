@@ -22,8 +22,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CategoriaService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { MailComposer } from '@capacitor/mail-composer';
-//not obsoleto
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 
 
 @NgModule({
@@ -43,7 +42,7 @@ import { MailComposer } from '@capacitor/mail-composer';
   })),
   provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideStorage(() => getStorage()),
   provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()),
-  provideHttpClient(), CategoriaService, MailComposer],
+  provideHttpClient(), CategoriaService, EmailComposer],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

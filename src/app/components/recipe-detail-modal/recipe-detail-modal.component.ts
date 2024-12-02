@@ -1,10 +1,12 @@
-import { Component, Input, ViewChild  } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Firestore, collection, doc, setDoc, deleteDoc, query, where, getDocs, getDoc } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 //import { CompartirMailComponent } from '../compartir-mail/compartir-mail.component'
 import { IonModal } from '@ionic/angular';
-import { MailComposer } from '@capacitor/mail-composer';
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+
+declare var cordova: any;
 
 @Component({
   selector: 'app-recipe-detail-modal',
@@ -12,6 +14,7 @@ import { MailComposer } from '@capacitor/mail-composer';
   styleUrls: ['./recipe-detail-modal.component.scss'],
 })
 export class RecipeDetailModalComponent {
+
 
   @ViewChild('modal') modal: IonModal;
 
@@ -36,22 +39,38 @@ export class RecipeDetailModalComponent {
       }
     });
 
-    
+
 
   }
 
-  sendEmail() {
-    let email = {
+  async sendEmail() {
+    const email = {
       to: 'fe.docmac@duocuc.cl',
       cc: 'cc@ejemplo.com',
       bcc: ['bcc1@ejemplo.com', 'bcc2@ejemplo.com'],
+      attachments: [], // Agregar rutas de archivos si necesitas adjuntar algo
       subject: 'Asunto del correo',
       body: 'Cuerpo del correo electrónico',
-      isHtml: true
+      isHtml: true, // Indica si el contenido es HTML
     };
 
-    // Usamos el método open para enviar el correo
-    this.emailComposer.open(email);
+    await this.emailComposer.open(email);
+
+    // Verificar disponibilidad de la app de correo
+    /*cordova.plugins.email.isAvailable((isAvailable: boolean) => {
+      if (isAvailable) {
+        // Si hay una app de correo disponible, abrir el editor de correos
+        cordova.plugins.email.open(email, (success: boolean) => {
+          if (success) {
+            console.log('Correo enviado correctamente.');
+          } else {
+            console.log('El correo fue cancelado.');
+          }
+        });
+      } else {
+        console.error('No hay ninguna aplicación de correo instalada o habilitada.');
+      }
+    });*/
   }
 
 
@@ -154,7 +173,7 @@ export class RecipeDetailModalComponent {
       console.log('Correo electrónico enviado a:', this.email);
 
       this.modal.dismiss();
-      
+
       this.sendEmail();
 
 

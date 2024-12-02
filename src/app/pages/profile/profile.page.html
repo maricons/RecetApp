@@ -19,7 +19,7 @@
             <ion-icon 
               name="camera" 
               class="change-photo-icon" 
-              (click)="fileInput.click()">
+              (click)="takePhoto()">
             </ion-icon>
           </div>
         </div>
@@ -51,4 +51,22 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-modal #confirmationModal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Confirmar Foto</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="photo-container" *ngIf="photo">
+          <img [src]="photo" alt="Vista previa de la imagen" />
+        </div>
+        <ion-button expand="block" color="primary" (click)="confirmPhoto()">Guardar</ion-button>
+        <ion-button expand="block" color="danger" (click)="cancelPhoto()">Cancelar</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>
