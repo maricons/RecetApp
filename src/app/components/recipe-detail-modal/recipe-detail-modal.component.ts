@@ -44,13 +44,38 @@ export class RecipeDetailModalComponent {
   }
 
   async sendEmail() {
+
+    const formattedIngredients = this.receta.ingredientes
+      .split('\n') // Divide los ingredientes por líneas
+      .map((ing: string) => ing.trim()) // Elimina espacios en blanco extra
+      .filter((ing: string) => ing !== '') // Elimina líneas vacías
+      .join('<br>'); // Une las líneas con saltos de línea en HTML
+
+    const formattedInstructions = this.receta.instrucciones
+      .split(/\d\.\s/) // Divide por números seguidos de un punto y espacio
+      .filter((step: string) => step.trim() !== '') // Filtra pasos vacíos
+      .map((step: string, index: number) => `${index + 1}. ${step.trim()}<br>`) // Agrega el número y salto de línea
+      .join('');
+
+    const emailBody = `
+      <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <h1 style="font-size: 24px; color: #555;">${this.receta.titulo}</h1>
+          <p><b>Descripción:</b> ${this.receta.descripcion}</p>
+          <b>Ingredientes:</b><br>
+          ${formattedIngredients}
+          <br><br>
+          <b>Instrucciones:</b><br>
+          ${formattedInstructions}
+        </body>
+      </html>
+    `;
+
     const email = {
-      to: 'fe.docmac@duocuc.cl',
-      cc: 'cc@ejemplo.com',
-      bcc: ['bcc1@ejemplo.com', 'bcc2@ejemplo.com'],
+      to: this.email,
       attachments: [], // Agregar rutas de archivos si necesitas adjuntar algo
-      subject: 'Asunto del correo',
-      body: 'Cuerpo del correo electrónico',
+      subject: `${this.authorName} compartió una receta`,
+      body: emailBody,
       isHtml: true, // Indica si el contenido es HTML
     };
 
